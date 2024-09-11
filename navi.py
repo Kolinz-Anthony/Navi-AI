@@ -2,22 +2,24 @@ import speech_recognition as sr
 import pyttsx3
 import openai
 
-OPENAI_KEY = "YOUR API KEY"
+OPENAI_KEY = "YOUR API KEY" #input your API Key
 openai.api_key = OPENAI_KEY
 
+
+r = sr.Recognizer()
 
 def SpeakText(command):
     engine = pyttsx3.init()
     engine.say(command)
     engine.runAndWait()
 
-r = sr.Recognizer()
 
 def record_text():
     while(1):
         try:
             with sr.Microphone() as source2:
-
+                print("I am Navi AI")
+                print("How may I help you?")
                 r.adjust_for_ambient_noise(source2, duration=0.5)
 
                 print("I'm listening")
@@ -36,7 +38,7 @@ def record_text():
         except sr.UnknownValueError:
             print("Unknown error occured")
 
-def send_to_chatGPT(messages, model = "gpt-3.5-turbo"):
+def send_to_chatGPT(messages, model = "The model of chatGPT you are usng"): #input your own model
 
     response = openai.ChatCompletion.create(
         model = model,
